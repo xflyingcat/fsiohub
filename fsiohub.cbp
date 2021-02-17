@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="fsiohub" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="fsiohub" prefix_auto="1" extension_auto="1" />
+				<Option object_output="flcatrsd-obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="SDK/CHeaders/XPLM" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="fsiohub" prefix_auto="1" extension_auto="1" />
+				<Option object_output="flcatrsd-obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DIBM" />
+			<Add option="-DTEST_BUILD" />
+			<Add option="-DCODEBLOCKS" />
+		</Compiler>
+		<Linker>
+			<Add library="ws2_32" />
+		</Linker>
+		<Unit filename="FSUIPC_User.h" />
+		<Unit filename="IPCuser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="IPCuser.h" />
+		<Unit filename="config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="config.h" />
+		<Unit filename="console_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="console_utils.h" />
+		<Unit filename="devside.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="devside.h" />
+		<Unit filename="dummies.h" />
+		<Unit filename="fsuipc_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="fsuipc_utils.h" />
+		<Unit filename="includes.h" />
+		<Unit filename="ini.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ini.h" />
+		<Unit filename="iotest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="logger.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="logger.h" />
+		<Unit filename="serial.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="serial.h" />
+		<Unit filename="simside.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="simside.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
