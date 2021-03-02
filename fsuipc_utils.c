@@ -44,9 +44,9 @@ int fsuipc_connect(void)
 		if (FSUIPC_Write(0x8001, 12, chOurKey, &dwResult))
 			FSUIPC_Process(&dwResult); // Process the request(s)
 long tmplong=1;
-
-		if (FSUIPC_Write(0x07BC, 4, &tmplong, &dwResult))
-			FSUIPC_Process(&dwResult); // Process the request(s)
+///
+//		if (FSUIPC_Write(0x07BC, 4, &tmplong, &dwResult))
+//			FSUIPC_Process(&dwResult); // Process the request(s)
 
 
 		// I've not checked the reslut of the above -- if it didn't register us,

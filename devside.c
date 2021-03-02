@@ -87,8 +87,10 @@ void display_update(SESSION_WORK_SPACE *sws)
          else
            sprintf(tmp_buf,get_fmt(fmt_buf,key_config[i].len),output_data[key_code]);
        }
-
-        memcpy(&buf[4+8*((devs-1)-key_config[i].devadr)+key_config[i].pos],
+        //((devs-1)-key_config[i].devadr)
+        memcpy(&buf[
+                      4+8*key_config[i].devadr
+                        +  key_config[i].pos],
               tmp_buf,
               key_config[i].len);
        }

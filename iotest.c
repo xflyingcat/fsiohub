@@ -102,7 +102,7 @@ void main_task(void)
                        ev->value
                        );
             }
-            Sleep(2);
+            //Sleep(2);
 
         }
         while(get_fsuipc_flag());
