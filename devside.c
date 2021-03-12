@@ -45,10 +45,6 @@ return fmt_buf;
 }
 
 
-
-
-
-
 void display_update(SESSION_WORK_SPACE *sws)
 {
 #if 1
@@ -58,10 +54,10 @@ void display_update(SESSION_WORK_SPACE *sws)
     char fmt_buf[16];
     int tmp_int;
 
-   int numeric_type_len = 128;
+   int numeric_tape_len = 128;
    if(sws->numeric_outs_max)
-       numeric_type_len = sws->numeric_outs_max;
-   int devs = numeric_type_len / 8;
+       numeric_tape_len = sws->numeric_outs_max;
+   int devs = numeric_tape_len / 8;
 
    memset(buf,' ',sizeof(buf));
    for(i=0;i<MAX_KEYS;i++)
@@ -100,9 +96,9 @@ void display_update(SESSION_WORK_SPACE *sws)
       buf[1] = '7';
       buf[2] = 'S';
       buf[3] = 'G';
-      buf[132] = '}';
-      buf[numeric_type_len + 4] = '}';
-      serial_write(sws,(unsigned char*)buf,numeric_type_len + 5);
+      buf[numeric_tape_len + 4] = '}';
+      buf[numeric_tape_len + 5] = 0;
+      serial_write(sws,(unsigned char*)buf,numeric_tape_len + 5);
 #endif
 }
 
@@ -113,9 +109,9 @@ void lamps_update(SESSION_WORK_SPACE *sws)
    int i,key_code,n;
 
    memset(buf,' ',sizeof(buf));
-   int discrete_type_len = 128;
+   int discrete_tape_len = 64;
    if(sws->discrete_outs_max)
-      discrete_type_len = sws->discrete_outs_max;
+      discrete_tape_len = sws->discrete_outs_max;
 
    for(i=0;i<MAX_KEYS;i++)
    {
@@ -136,8 +132,8 @@ void lamps_update(SESSION_WORK_SPACE *sws)
       buf[1] = 'L';
       buf[2] = 'E';
       buf[3] = 'D';
-      buf[discrete_type_len+4] = '}';
-      n = serial_write(sws,(unsigned char*)buf,discrete_type_len+5);
+      buf[discrete_tape_len+4] = '}';
+      n = serial_write(sws,(unsigned char*)buf,discrete_tape_len+5);
 
       if(n <= 0)
       {
