@@ -57,5 +57,8 @@ int send_to_device(ULONG64 data);
 void set_pipes_off(void);
 void set_pipes_on(void);
 int ports_detect(void);
+void set_port_using_flag(int ndx);
+int get_port_using_flag(int ndx);
+void clear_ports_using_flags(void);
 #endif
 

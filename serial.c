@@ -19,6 +19,30 @@ typedef struct {
 
 PORTS_PULL ports_pull[SERIAL_PORTS_MAX];
 
+static int ports_using[SERIAL_PORTS_MAX];
+void set_port_using_flag(int ndx)
+{
+    if(ndx>=0 && ndx < SERIAL_PORTS_MAX)
+    {
+        ports_using[ndx] = 1;
+    }
+}
+
+int get_port_using_flag(int ndx)
+{
+    if(ndx>=0 && ndx < SERIAL_PORTS_MAX)
+    {
+        return ports_using[ndx];
+    }
+    return 0;
+}
+
+void clear_ports_using_flags(void)
+{
+   memset(ports_using,0,sizeof(ports_using));
+}
+
+
 HANDLE get_handle_by_id(int id)
 {
     int i;
@@ -320,9 +344,20 @@ log_printf("--------------------+-------------+-----------+----------\n");
        }
        sws[i].serial_connect_flag = 0;
        sws[i].port_id = i;
+
+
+       //if(sws[i].serial_port[0])
+       //    sws[i].serial_thread_handle =
+       //    CreateThread(NULL, 0, serial_thread, &sws[i], 0, NULL);
        if(sws[i].serial_port[0])
+       {
+          if(get_port_using_flag(i))
            sws[i].serial_thread_handle =
-           CreateThread(NULL, 0, serial_thread, &sws[i], 0, NULL);
+             CreateThread(NULL, 0, serial_thread, &sws[i], 0, NULL);
+           else
+             log_write("Thread has not been started. Port: %d (serial: %s) is not mentioned in the current xpiohub.ini file",
+                       i,sws[i].serial_port);
+       }
    }
    close_ports_pull();
 }

@@ -195,6 +195,7 @@ static int config_cb(int lineno, void* user, const char* section, const char* na
     if(MATCH("DEVICE","PORT"))
     {
         port = atoi(value);
+        set_port_using_flag(port);
         return 1;
     }
 
@@ -434,6 +435,8 @@ int load_config(char *path)
     input_item = -1;
     port = 0;
     log_write("Config file loading");
+
+    clear_ports_using_flags();
 
     char ini_path[MAX_PATH];
     strcpy(ini_path,path);
